@@ -1,8 +1,17 @@
-Задание 1
+//функция, разбивающая число на цифры 1234
+function getBreakTheNumber(number) {
+    for (let ten = 10; number / ten > 0.1; ten *= 10) {
+        breakTheNumber.push(Math.floor((number % ten) / ten * 10));
+    }
+    return breakTheNumber;
+}
+let breakTheNumber = [];
+
+//Задание1
 function calcNOK(a, b) {
     let array = [];
     let NOD;
-    for (let c = 1; a / c >= 1 & b / c >= 1; c++) {
+    for (let c = 1; a / c >= 1 && b / c >= 1; c++) {
         if (a % c == 0 & b % c == 0) {
             array.push(c);
         }
@@ -12,120 +21,43 @@ function calcNOK(a, b) {
     return (NOK);
 }
 
-
-Задание 2
-function checkPalindrom(a) {
-    let b = a;
-    let arr = [];
-    while (b >= 1) {
-        if (b % 10 == 0) {
-            b = b / 10;
-            arr.push(0);
-        } else if (b < 10) {
-            arr.push(b);
-            break;
-        } else {
-            arr.push(b % 10);
-            b = (b - (b % 10)) / 10;
-        }
-    }
-    const arr1 = [...arr];
-    arr.reverse();
-    let isPalindrom = false;
-    arr.every(function checkItems(value, index, array) {
-        if (value !== arr1[index]) {
-            isPalindrom = false;
-            return false;
-        } else if (value === arr1[index]) {
-            isPalindrom = true;
-            return true;
-        } if (index === arr1.length - 1) {
-            isPalindrom = true;
-            return true;
-        }
-    }) 
-    if (isPalindrom = false) {
-        return 'Не является';
-    } else {
-        return 'Палиндром';
-    }
-}
-checkPalindrom(1234567);
-
-function checkPalindrom(a) {
-    let b = a;
-    let arr = [];
-    while (b >= 1) {
-        if (b % 10 == 0) {
-            b = b / 10;
-            arr.push(0);
-        } else if (b < 10) {
-            arr.push(b);
-            break;
-        } else {
-            arr.push(b % 10);
-            b = (b - (b % 10)) / 10;
-        }
-    }
-    const arr1 = [...arr];
-    arr.reverse();
+//Задание2
+function getIsPalindrom(number) {
+    getBreakTheNumber(number);
+    const breakTheNumberReverse = [...breakTheNumber];
+    breakTheNumber.reverse();
     const callBack = (value, index) => {
-        if (value !== arr1[index]) {
+        if (value !== breakTheNumberReverse[index]) {
             isPalindrom = false;
             return false;
         }
-        if (index === arr1.length - 1) {
+        if (index === breakTheNumberReverse.length - 1) {
             isPalindrom = true;
         }
         return true;
     };
-    let isPalindrom = false;
-    arr.every(callBack)
-    if (isPalindrom === false) {
-        return 'Не является';
-    } else {
-        return 'Палиндром';
-    }
+    breakTheNumber.every(callBack);
+    return (isPalindrom === false ? false : true);
+}
+
+//Задание3
+function getDifferentNum(number) {
+    getBreakTheNumber(number);
+    let differentNum = Array.from(new Set(breakTheNumber));
+    return (differentNum.length);
+}
+
+//Задание4
+function getDegreeNum(number, degree) {
+    Math.pow(number, degree);
+    return Number.isInteger(degree) ? (Math.pow(number, degree)) : false;
 }
 
 
 
 
-Задание 3
-function sum(a) {
-    let arr = [];
-    while (a >= 1) {
-        if (a % 10 == 0) {
-            a = a / 10;
-            arr.push(0);
-        } else if (a < 10) {
-            arr.push(a);
-            break;
-        } else {
-            arr.push(a % 10);
-            a = (a - (a % 10)) / 10;
-        }
-    }
-    let arr1 = Array.from(new Set(arr));
-    return (arr1.length);
-}
-sum(123782193);
 
-
-
-
-Задание 4
-let A = prompt('Введите число', 2);
-let n = prompt('Введите степень (натуральное число)', 3);
-Math.pow(A, n);
-if (n >= 1) {
-    alert(Math.pow(A, n));
-} else {
-    alert('Введите натуральное число n!');
-}
-
-
-
+//|||||||||||||||||||||||||||||||||||||||||||||||||||
 Задание 5
 let b = 0;
 let n = 2;
